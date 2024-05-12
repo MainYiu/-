@@ -6,8 +6,4 @@ import { RouterLink } from 'vue-router'
   <RouterLink to="/webgpu">webgpu</RouterLink>
 </template>
 
-<style scoped>
-RouterLink {
-  font-size: 50px;
-}
-</style>
+<style scoped></style>

@@ -1,5 +1,50 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
+// import { useCanvasConfig } from '@/config/canvas_config'
+
+const canvas = ref(null)
+</script>
 
 <template>
-  <canvas id="webgpu"></canvas>
+  <div id="container">
+    <div class="left_item">
+      <div ref="root" id="root">
+        <canvas
+          id="webgpu"
+          ref="canvas"
+          style="background-color: white"
+          width="700"
+          height="500"
+        ></canvas>
+      </div>
+    </div>
+    <div class="right_item">
+      <div class="codeSpace">11111111</div>
+    </div>
+  </div>
 </template>
+
+<style scoped>
+#container {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-flow: row dense;
+}
+#container div {
+  width: 100%;
+  height: 90vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#root {
+}
+.codeSpace {
+  width: 90%;
+  background-color: rgba(244, 255, 240, 0.657);
+}
+</style>
