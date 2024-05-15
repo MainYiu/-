@@ -5,7 +5,6 @@ import { RouterLink } from 'vue-router'
 <template>
   <RouterLink to="/threejs">threejs</RouterLink>
   <RouterLink to="/cesium">cesium</RouterLink>
-  <RouterLink to="/webgpu">webgpu</RouterLink>
 </template>
 
 <style scoped></style>
