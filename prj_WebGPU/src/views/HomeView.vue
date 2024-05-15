@@ -3,6 +3,8 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
+  <RouterLink to="/threejs">threejs</RouterLink>
+  <RouterLink to="/cesium">cesium</RouterLink>
   <RouterLink to="/webgpu">webgpu</RouterLink>
 </template>
 

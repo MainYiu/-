@@ -10,9 +10,19 @@ const router = createRouter({
       component: HomeView
     },
     {
+      path: '/threejs',
+      name: 'threejs',
+      component: () => import('@/views/ThreeJS/index_threejs.vue')
+    },
+    {
       path: '/webgpu',
       name: 'webgpu',
       component: () => import('@/views/WebGPU/index_webgpu.vue')
+    },
+    {
+      path: '/cesium',
+      name: 'cesium',
+      component: () => import('@/views/Cesium/index_cesium.vue')
     }
   ]
 })
