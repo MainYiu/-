@@ -1,62 +1,50 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-import * as THREE from 'three';
+import * as THREE from "three";
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 
-const canvas = ref(null)
+const gui = new GUI();
+
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
 const controls = new OrbitControls(camera, renderer.domElement);
-const loader = new GLTFLoader();
-window.addEventListener( 'resize', onWindowResize );
+document.body.appendChild(renderer.domElement);
 
-function onWindowResize() {
+const geometry = new THREE.PlaneGeometry(1000, 1000);
+const material = new THREE.MeshLambertMaterial({ color: 0xffffff });
+const plane = new THREE.Mesh(geometry, material);
+scene.add(plane);
+const light = new THREE.AmbientLight(0x404040, 10); // 柔和的白光
+scene.add(light);
+console.log(camera);
 
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
+camera.position.set(0, -50, 50)
+camera.lookAt(0, 0, 0);
+gui.add(light, 'intensity', 0, 20.0);
+const axesHelper = new THREE.AxesHelper(100);
+scene.add(axesHelper);
+function animate() {
+  requestAnimationFrame(animate);
 
-  renderer.setSize(window.innerWidth, window.innerHeight);
-
+  // cube.rotation.x += 0.01;
+  // cube.rotation.y += 0.01;
+  controls.update();
+  renderer.render(scene, camera);
 }
+
+animate();
 </script>
 
 <template>
-  <div id="container">
-    <div class="left_item">
-      <div ref="root" id="root">
-        <canvas id="webgpu" ref="canvas" style="background-color: white" width="700" height="500"></canvas>
-      </div>
-    </div>
-    <div class="right_item">
-      <div class="codeSpace">11111111</div>
-    </div>
+  <div>
   </div>
 </template>
 
 <style scoped>
-#container {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-flow: row dense;
-}
-
-#container div {
-  width: 100%;
-  height: 90vh;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#root {}
-
-.codeSpace {
-  width: 90%;
-  background-color: rgba(244, 255, 240, 0.657);
+h1 {
+  color: red
 }
 </style>
